@@ -79,26 +79,26 @@
     <div class="container">
         <section>
             <h2>🔍 Overview</h2>
-            <p>This application, written in **Python**, provides a graphical interface (**Tkinter**) for **scanning local networks**. It leverages the powerful **Scapy** library to send ARP requests to a specified IP range (e.g., <code>192.168.1.1/24</code>) to discover active devices. Additionally, it uses standard Python networking modules for hostname resolution and basic **ping** checks to determine the status (Online/Offline) of the discovered hosts.</p>
+            <p>This application, written in Python, provides a graphical interface (Tkinter) for scanning local networks. It leverages the powerful Scapy library to send ARP requests to a specified IP range (e.g., <code>192.168.1.1/24</code>) to discover active devices. Additionally, it uses standard Python networking modules for hostname resolution and basic ping checks to determine the status (Online/Offline) of the discovered hosts.</p>
         </section>
 
         <section>
             <h2>✨ Key Features</h2>
             <ul class="feature-list">
-                <li>**GUI Interface:** Easy-to-use graphical user interface built with Tkinter.</li>
-                <li>**ARP Scanning (Scapy):** Efficient network discovery using ARP packets to find IP and MAC addresses.</li>
-                <li>**IP Range Auto-Detection:** Automatically suggests the local network range (e.g., <code>192.168.1.1/24</code>).</li>
-                <li>**Host Status Check:** Pings each discovered host to determine if it is "Online" or "Offline".</li>
-                <li>**Hostname Resolution:** Attempts to resolve the hostname for each IP address.</li>
-                <li>**Data Export:** Results can be exported to a **CSV** file.</li>
-                <li>**Interactive Results Table:**
+                <li>GUI Interface: Easy-to-use graphical user interface built with Tkinter.</li>
+                <li>ARP Scanning (Scapy): Efficient network discovery using ARP packets to find IP and MAC addresses.</li>
+                <li>IP Range Auto-Detection: Automatically suggests the local network range (e.g., <code>192.168.1.1/24</code>).</li>
+                <li>Host Status Check: Pings each discovered host to determine if it is "Online" or "Offline".</li>
+                <li>Hostname Resolution: Attempts to resolve the hostname for each IP address.</li>
+                <li>Data Export: Results can be exported to a CSV file.</li>
+                <li>Interactive Results Table:
                     <ul>
                         <li>Results displayed in a sortable Treeview widget.</li>
-                        <li>**Right-Click Context Menu** on IP address for copying the IP or opening it in a web browser (as <code>http://IP_Address</code>).</li>
+                        <li>Right-Click Context Menu on IP address for copying the IP or opening it in a web browser (as <code>http://IP_Address</code>).</li>
                         <li>Cursor changes to a hand when hovering over the IP column.</li>
                     </ul>
                 </li>
-                <li>**Multi-Threading:** The network scan runs in a separate thread to keep the GUI responsive.</li>
+                <li>Multi-Threading: The network scan runs in a separate thread to keep the GUI responsive.</li>
             </ul>
                     </section>
 
@@ -107,19 +107,19 @@
             <p>The core functionality relies on the following key components:</p>
 
             <h3>1. Network Discovery (Scapy - <code>scan_network</code> method)</h3>
-            <p>The tool uses an **ARP (Address Resolution Protocol) sweep** for fast discovery. It crafts an Ethernet frame with the destination MAC set to the broadcast address (<code>ff:ff:ff:ff:ff:ff</code>) and an ARP packet targeting the IP range.</p>
+            <p>The tool uses an ARP (Address Resolution Protocol) sweep for fast discovery. It crafts an Ethernet frame with the destination MAC set to the broadcast address (<code>ff:ff:ff:ff:ff:ff</code>) and an ARP packet targeting the IP range.</p>
             <pre>ans, _ = srp(Ether(dst="ff:ff:ff:ff:ff:ff") / ARP(pdst=ip_range), timeout=3, verbose=False)</pre>
             <p>The <code>ans</code> variable contains the list of answered packets, providing the IP (<code>received.psrc</code>) and MAC (<code>received.hwsrc</code>) addresses.</p>
 
             <h3>2. Host Status Check (Subprocess - <code>ping_host</code> method)</h3>
-            <p>To confirm the device is responding and to determine its status (Online/Offline), the code executes a native system **ping** command, supporting both Windows (<code>-n 1</code>) and Unix-like systems (<code>-c 1</code>).</p>
+            <p>To confirm the device is responding and to determine its status (Online/Offline), the code executes a native system ping command, supporting both Windows (<code>-n 1</code>) and Unix-like systems (<code>-c 1</code>).</p>
             <pre>
 param = '-n' if platform.system().lower() == 'windows' else '-c'
 command = ['ping', param, '1', ip]
 response = subprocess.run(command, ...)</pre>
 
             <h3>3. GUI Responsiveness (Threading)</h3>
-            <p>Since network scanning is a blocking operation, the <code>scan_network</code> method is run in a separate **daemon thread** (<code>start_scan_thread</code>) to prevent the Tkinter GUI from freezing. All GUI updates (like progress bar and table updates) are safely scheduled back onto the main thread using <code>self.root.after(0, ...)</code>.</p>
+            <p>Since network scanning is a blocking operation, the <code>scan_network</code> method is run in a separate daemon thread (<code>start_scan_thread</code>) to prevent the Tkinter GUI from freezing. All GUI updates (like progress bar and table updates) are safely scheduled back onto the main thread using <code>self.root.after(0, ...)</code>.</p>
         </section>
     </div>
 
