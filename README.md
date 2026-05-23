@@ -4,7 +4,7 @@
 ![Qt6](https://img.shields.io/badge/Qt-6.0+-green)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20|%20Linux%20|%20macOS-lightgrey)
 
-Network-Scanner is a highly tactical, cross-platform Network Scanner re-engineered from the ground up in C++ and Qt6. It completely replaces the old Python/Tkinter iteration with high-performance networking capabilities and a sleek, immersive dark terminal interface.
+Network-Scanner is a highly tactical, cross-platform Network Scanner re-engineered from the ground up in C++ and Qt6.
 
 ## Features
 
