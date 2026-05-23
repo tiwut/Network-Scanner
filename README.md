@@ -8,6 +8,13 @@ Network-Scanner is a highly tactical, cross-platform Network Scanner re-engineer
 
 <img width="1222" height="860" alt="image" src="https://github.com/user-attachments/assets/37f7811c-a854-4124-927f-62cae574a136" />
 
+## Install with Homebrew
+```bash
+brew tap Nexus-Titan/tab https://github.com/Nexus-Titan/homebrew-tap.git
+brew update
+brew install nexus-titan/tab/tiwut-network-scanner
+Network-Scanner
+```
 
 ## Features
 
