@@ -6,6 +6,9 @@
 
 Network-Scanner is a highly tactical, cross-platform Network Scanner re-engineered from the ground up in C++ and Qt6.
 
+<img width="1222" height="860" alt="image" src="https://github.com/user-attachments/assets/37f7811c-a854-4124-927f-62cae574a136" />
+
+
 ## Features
 
 1. **Full C++ / Qt Transition**: Rewritten natively for maximum multi-threading performance and memory safety.
